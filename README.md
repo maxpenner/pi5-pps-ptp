@@ -26,3 +26,8 @@ Instructions for the client setup are [here](docs/client.md).
 ## Acknowledged
 
 This project is a fork of this [repository](https://github.com/parlaynu/pi5-timeserver-gps-pps).
+
+## Useful Links
+
+- [ptp4l High Values of Master offset freq and path delay](https://stackoverflow.com/a/66027431)
+- [Creating an isolated NTP server with only 1PPS](https://unix.stackexchange.com/a/688159)

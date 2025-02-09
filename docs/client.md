@@ -61,7 +61,3 @@ Start the service:
 
     journalctl -f -u ptp4l@enp4s0
     journalctl -f -u phc2sys@enp4s0
-
-## Useful Links
-
-[ptp4l High Values of Master offset freq and path delay](https://stackoverflow.com/questions/65949602/ptp4l-high-values-of-master-offset-freq-and-path-delay)
