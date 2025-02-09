@@ -1,89 +1,28 @@
-# RaspberryPi5 GPS/PPS Timeserver
+# Raspberry Pi 5 synchronized only with PPS acting as PTP timeserver
 
-This repo contains instructions for building a timeserver using GPS/PPS as the reference clock. It
-uses NTP and PTP to share time with the local network.
+This repository contains instructions for building a Raspberry Pi 5 PTP timeserver with the following properties:
 
-The key hardware components used are:
+- Long-term synchronization is based solely on a PPS without any additional information.
+- The PPS can be isolated, i.e. without synchronization with a common time standard such as TAI/UTC/GPST. Therefore, the PPS can be provided by any generic signal generator.
+- Only during the boot process does the Pi 5 attempt to query public NTP servers for a limited duration to align its system time. After that, the system time only depends on the PPS and may slowly start to deviate from common time standards.
+- The use case is a semi-isolated system. It has access to NTP servers synchronized with UTC, but no access to a PTP master or any precise hardware reference clock synchronized with a common time standard, for instance a GPS-derived PPS due to being indoors. 
 
-* [RaspberryPi 5B](https://www.raspberrypi.com/products/raspberry-pi-5/)
-* [BerryGPS-IMU v4](https://ozzmaker.com/product/berrygps-imu/)
-* [GPS External Antenna](https://ozzmaker.com/product/antenna-for-berrygps-and-berrygps-imu/)
-* [RaspberryPi 4B](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/)
-* Network switch
-* Network cables
+## System Overview
 
-You'll also need SD cards, power supplies and probably cases for your RaspberryPis.
+![System Overview](docs/system.png "System Overview")
 
-The Pi5B has a network card with support for PTP hardware timestamping, although it could also be done with 
-PTP software timestamping on an earlier version of the Pi.
+For comparison, a similar system with GPS as the hardware reference clock:
 
-The Pi4 is used for the client because I had one already. The setup described for the Pi4 client should be easily 
-transferred to any Linux machine.
-
-The images below show the Pi5 with the BerryGPS-IMU HAT attached, and the complete hardware system:
-
-<table>
-    <tr>
-        <td><img src="docs/pi5-berrygps.jpeg"></td>
-        <td><img src="docs/pi5-system.jpeg"></td>
-    </tr>
-</table>
-
-And the software components are a bit like this:
-
-![System Setup](docs/system.png "System Setup")
+[System Overview with GPS](https://github.com/parlaynu/pi5-timeserver-gps-pps/blob/main/docs/system.png)
 
 ## Server
 
-Instructions for the server setup are [here](docs/server.md)
+Instructions for the server setup are [here](docs/server.md).
 
 ## Client
 
-Instructions for the client setup are [here](docs/client.md)
+Instructions for the client setup are [here](docs/client.md).
 
-## GPS Configuration
+## Acknowledged
 
-Instructions for customising the GPS configuration are [here](docs/gps-configuration.md)
-
-## Reference
-
-Great Example using NTP
-
-* https://www.satsignal.eu/ntp/Raspberry-Pi-NTP.html
-
-RaspberryPi
-
-* https://www.raspberrypi.com/products/raspberry-pi-5/
-* https://www.raspberrypi.com/software/
-* https://www.raspberrypi.com/documentation/
-
-BerryGPS-IMU
-
-* https://ozzmaker.com/berrygps-setup-guide-raspberry-pi/
-
-UARTs
-
-* https://www.raspberrypi.com/documentation/computers/configuration.html#configuring-uarts
-* https://forums.raspberrypi.com/viewtopic.php?t=359132
-
-PPS
-
-* https://www.kernel.org/doc/html/latest/driver-api/pps.html
-* https://forums.raspberrypi.com/viewtopic.php?t=195011
-
-GPSd
-
-* https://gpsd.io/
-* https://gpsd.io/gpsd-time-service-howto.html#_providing_local_ntp_service_using_ptp
-
-Chrony
-
-* https://gpsd.io/gpsd-time-service-howto.html#_feeding_chrony_from_gpsd
-* https://chrony-project.org/
-* https://chrony-project.org/comparison.html
-
-PTP
-
-* https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/deployment_guide/s0-serving_ntp_time_with_ptp
-
-
+This project is a fork of this [repository](https://github.com/parlaynu/pi5-timeserver-gps-pps).
