@@ -9,7 +9,10 @@ This repository contains instructions for building a Raspberry Pi 5 PTP timeserv
 
 ## System Overview
 
-![System Overview](docs/system.png "System Overview")
+
+<p align="left">
+  <img src="docs/system.png" style="width: 50%; background-color: transparent;" alt="docs/system.png"/>
+</p>
 
 For comparison, a similar system with GPS as the hardware reference clock:
 
